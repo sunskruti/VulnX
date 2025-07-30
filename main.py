@@ -11,12 +11,18 @@ def main():
     parser = argparse.ArgumentParser(description="VulnX - Vulnerability Scanner")
     parser.add_argument("--target", required=True, help="Target domain to scan")
     args = parser.parse_args()
-
     target = args.target
     print(f"[*] Starting scan on: {target}\n")
 
+    recon_info = perform_recon(target)
+    print("[+] Recon Info:", recon_info)
+
+    tech_stack = detect_tech_stack(target)
+    print("[+] Tech Stack:", tech_stack)
+
     subdomains = enumerate_subdomains(target)
     print("[+] Subdomains found:", subdomains)
+
 
     for sub in subdomains:
         open_ports = scan_ports(sub)
