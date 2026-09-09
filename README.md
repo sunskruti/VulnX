@@ -127,17 +127,43 @@ pip install -r requirements.txt
 
 ## ▶️ Usage
 
-Run VulnX from the project directory:
+### Standard Scan
+
+Run a complete scan with automatic JSON and HTML report generation:
 
 ```bash
-python main.py
+python main.py --target example.com
 ```
 
-Follow the available command-line options to provide an authorized target and select the required scanning functionality.
+### Recursive Subdomain Scan
 
-> Only use VulnX against systems you own or have explicit permission to test.
+Perform a recursive scan of discovered subdomains:
 
----
+```bash
+python main.py --target example.com --recursive 1
+```
+
+### Resume / Review Previous Scan
+
+Resume or review a previously generated scan using its JSON report:
+
+```bash
+python main.py --resume exports/example.com/<timestamp>.json
+```
+
+### Manual Scan
+
+Individual modules can also be executed manually when you want more control over the scanning workflow.
+
+```bash
+# Run individual scanning modules
+python <module>.py --target example.com
+```
+
+Manual execution is useful for testing individual components, debugging, and running only the specific reconnaissance or analysis functionality required.
+
+> ⚠️ **Important:** Only scan domains, hosts, and systems that you own or have explicit permission to test.
+
 
 ## 🔄 Workflow
 
